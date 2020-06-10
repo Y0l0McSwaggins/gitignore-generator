@@ -42,11 +42,11 @@ declare -A types=(
 
 # Is list
 if [ "$command" == "list" ]; then
-    listContent='TYPE CONTENTS\n'
+    listContent='TYPE|CONTENTS\n'
     for key in ${!types[@]}; do
-        listContent="${listContent}${key}  ${types[${key}]}\n"
+        listContent="${listContent}${key}|${types[${key}]}\n"
     done
-    printf "$listContent" | column -t
+    printf "$listContent" | column -t -s "|" | tr ',' ' '
     exit 0
 fi
 
